@@ -48,7 +48,11 @@ public class SensorService {
         }
 
         resultado.get().setUnidade(dados.unidade());
+        resultado.get().setValor(dados.valor());
+        resultado.get().setLocal(dados.local());
+
         return new SensorDTO(sensorRepo.save(resultado.get()));
+
     }
 
     public void delete(long id) {
