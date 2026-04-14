@@ -12,9 +12,17 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
 @Service
+@Configuration
+@ConfigurationProperties(prefix = "security.jwt")
 public class TokenService {
-    private String tokenKey = "123456789";
+
+    // @Value("${security.jwt.tokenkey}")
+    private String tokenKey;
 
     private Instant expirationDate() {
         return LocalDateTime.now().plusHours(2).toInstant(
